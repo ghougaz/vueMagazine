@@ -1,0 +1,99 @@
+<template>
+	<v-navigation-drawer
+		light
+		temporary
+		:right="right"
+		v-model="rightDrawer"
+		fixed
+	>
+		<v-expansion-panel light>
+			<v-btn
+				light
+				icon
+				@click.stop="updateDrawer(false)">
+				<v-icon class="display-1 primary--text">menu</v-icon>
+			</v-btn>
+			<v-expansion-panel-content
+				light
+				class="borderTop0">
+				<div slot="header"><span class="title">Indice</span><hr class="hrClass"></div>
+				<v-card light>
+					<v-card-text>
+						<indice />
+					</v-card-text>
+				</v-card>
+			</v-expansion-panel-content>
+			<v-expansion-panel-content
+			light>
+				<div slot="header"><span class="title">Edições</span><hr class="hrClass"></div>
+				<v-card light>
+					<v-card-text>
+						<p> empty </p>
+					</v-card-text>
+				</v-card>
+			</v-expansion-panel-content>
+			<v-expansion-panel-content
+			light>
+				<div slot="header"><span class="title">Políticas de uso</span><hr class="hrClass"></div>
+				<v-card light>
+					<v-card-text>
+						<p>Polítias de uso</p>
+					</v-card-text>
+				</v-card>
+			</v-expansion-panel-content>
+			<v-expansion-panel-content
+			light>
+				<div slot="header"><span class="title">Sobre</span><hr class="hrClass"></div>
+				<v-card light>
+					<v-card-text>
+						<p>Sobre</p>
+					</v-card-text>
+				</v-card>
+			</v-expansion-panel-content>
+		</v-expansion-panel>
+	</v-navigation-drawer>
+</template>
+
+<script>
+import Indice from './Indices.vue';
+export default {
+	methods: {
+		updateDrawer(data) {
+			this.$store.commit('updateRightNav', data);
+		}
+	},
+	components: {
+
+		'indice': Indice
+	},
+	computed: {
+		rightDrawer: {
+			get() {
+				return this.$store.state.rightDrawer;
+			},
+			set() {
+			}
+		}
+	},
+	data() {
+		return {
+			right: true
+		};
+	}
+};
+</script>
+
+<style scoped>
+.hrClass {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #e71d32;
+	margin: 0;
+  padding: 0;
+	width:10%;
+}
+.borderTop0 {
+	border-top: 0 !important;
+}
+</style>
